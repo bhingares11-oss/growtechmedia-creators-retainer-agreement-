@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GrowTech Media — Creator Retainer Agreement</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0a0a0a;--white:#f5f4f0;--accent:#c8f54a;--gray:#1c1c1c;--gray2:#2a2a2a;--border:#2f2f2f;--muted:#888}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(200,245,74,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(200,245,74,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+.container{max-width:780px;margin:0 auto;padding:60px 24px 120px;position:relative;z-index:1}
+.header{margin-bottom:40px;animation:fadeUp .7s ease both}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,245,74,.1);border:1px solid rgba(200,245,74,.25);border-radius:100px;padding:6px 14px;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.header h1{font-family:'Syne',sans-serif;font-size:clamp(28px,5vw,42px);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:10px}
+.header h1 span{color:var(--accent)}
+.divider{width:40px;height:2px;background:var(--accent);margin:14px 0}
+.header p{font-size:14px;color:var(--muted);line-height:1.7}
+/* DOC */
+.agreement-doc{background:var(--gray);border:1px solid var(--border);border-radius:16px;padding:36px;margin-bottom:40px;animation:fadeUp .6s ease .2s both}
+.doc-header{text-align:center;border-bottom:1px solid var(--border);padding-bottom:24px;margin-bottom:24px}
+.doc-badge{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--accent);text-transform:uppercase;margin-bottom:10px}
+.doc-header h2{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;margin-bottom:5px}
+.doc-header .sub{font-size:12px;color:var(--muted)}
+.doc-sec{margin-bottom:26px}
+.doc-sec h3{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #222}
+.doc-sec p,.doc-sec li{font-size:13px;color:#aaa;line-height:1.8}
+.doc-sec ul,.doc-sec ol{padding-left:18px}
+.doc-sec li{margin-bottom:5px}
+.hl{color:var(--white);font-weight:500}
+.notice{background:rgba(200,245,74,.05);border:1px solid rgba(200,245,74,.15);border-radius:8px;padding:12px 14px;font-size:13px;color:#999;margin:10px 0;line-height:1.7}
+.doc-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px}
+.doc-table th{background:rgba(200,245,74,.08);color:var(--accent);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:9px 11px;text-align:left;border:1px solid #222}
+.doc-table td{padding:9px 11px;border:1px solid #222;color:#aaa}
+.chk li{list-style:none;padding-left:0}.chk li::before{content:'✅ '}
+.crs li::before{content:'❌ '}
+/* FORM */
+.sec-label{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.field{margin-bottom:17px}
+label{display:block;font-size:13px;font-weight:500;color:#aaa;margin-bottom:7px}
+label .req{color:var(--accent);margin-left:2px}
+input,select,textarea{width:100%;background:var(--gray2);border:1px solid var(--border);border-radius:10px;padding:13px 16px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(200,245,74,.08)}
+input::placeholder{color:#444}
+select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:40px;background-color:var(--gray2)}
+select option{background:#1c1c1c}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:520px){.row{grid-template-columns:1fr}}
+.field.error input,.field.error select,.field.error .sig-wrap{border-color:#ff4f4f!important}
+.err-msg{font-size:11px;color:#ff6b6b;margin-top:5px;display:none}
+.field.error .err-msg{display:block}
+/* SIG */
+.sig-wrap{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#111}
+.sig-canvas{display:block;width:100%;height:160px;cursor:crosshair;touch-action:none}
+.sig-bar{display:flex;align-items:center;justify-content:space-between;padding:9px 13px;background:#0f0f0f;border-top:1px solid #1a1a1a}
+.sig-hint{font-size:11px;color:#444;font-family:'DM Mono',monospace}
+.sig-clear{font-size:11px;color:#666;background:none;border:1px solid #333;border-radius:6px;padding:4px 10px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.sig-clear:hover{border-color:#ff4f4f;color:#ff4f4f}
+/* AGREE */
+.agree-box{background:rgba(200,245,74,.04);border:1px solid rgba(200,245,74,.12);border-radius:12px;padding:16px;margin-bottom:22px}
+.agree-row{display:flex;gap:12px;align-items:flex-start;cursor:pointer}
+.agree-row input[type=checkbox]{width:18px;height:18px;margin-top:3px;accent-color:var(--accent);cursor:pointer;flex-shrink:0}
+.agree-row span{font-size:13px;color:#aaa;line-height:1.6}
+/* BTN */
+.submit-btn{width:100%;background:var(--accent);color:var(--black);border:none;border-radius:12px;padding:18px 24px;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;letter-spacing:.02em;cursor:pointer;transition:transform .15s,box-shadow .15s;display:flex;align-items:center;justify-content:center;gap:10px}
+.submit-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 32px rgba(200,245,74,.25)}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none!important}
+.status-msg{text-align:center;font-size:13px;margin-top:12px;min-height:20px}
+.form-note{text-align:center;font-size:12px;color:#3a3a3a;margin-top:14px;line-height:1.6}
+/* SUCCESS */
+.success{display:none;text-align:center;padding:80px 24px;animation:fadeUp .6s ease both}
+.success-icon{width:80px;height:80px;background:rgba(200,245,74,.1);border:1px solid rgba(200,245,74,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 26px}
+.success h2{font-family:'Syne',sans-serif;font-size:34px;font-weight:800;margin-bottom:14px}
+.success h2 span{color:var(--accent)}
+.success p{color:#999;font-size:15px;line-height:1.8;max-width:420px;margin:0 auto 14px}
+.ref-box{font-family:'DM Mono',monospace;font-size:13px;color:var(--accent);background:rgba(200,245,74,.08);border:1px solid rgba(200,245,74,.2);border-radius:8px;padding:10px 16px;display:inline-block;margin-top:6px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <div class="badge">Legal Document · Retainer Agreement</div>
+  <h1>Creator Retainer<br><span>Agreement</span></h1>
+  <div class="divider"></div>
+  <p>Read the full agreement below carefully before signing. By drawing your signature, you confirm you have read and agree to all terms.</p>
+</div>
+
+<div class="agreement-doc">
+  <div class="doc-header">
+    <div class="doc-badge">GrowTech Media · Official Document</div>
+    <h2>Ongoing Retainer Agreement</h2>
+    <div class="sub">Minimum 3 Months · 10-Day Exit Notice · Per-Campaign Payment</div>
+  </div>
+
+  <div class="doc-sec">
+    <h3>Parties</h3>
+    <p><span class="hl">Agency:</span> GrowTech Media | @growtechmedia</p>
+    <p style="margin-top:6px"><span class="hl">Creator (Talent):</span> Details provided in the signing section below.</p>
+  </div>
+
+  <div class="doc-sec">
+    <h3>Purpose</h3>
+    <div class="notice">This is an <strong style="color:var(--white)">ongoing retainer agreement</strong>. It does not specify any individual campaign, brand, or posting schedule — those details are shared separately via a Campaign Brief for each campaign.</div>
+    <ul style="margin-top:10px">
+      <li>The Creator is available to GrowTech Media as an on-call talent partner</li>
+      <li>Both parties commit to a <span class="hl">minimum engagement period of 3 months</span></li>
+      <li>Campaign frequency, payment, and brand details are determined per campaign</li>
+    </ul>
+  </div>
+
+  <div class="doc-sec">
+    <h3>What This Covers</h3>
+    <ul class="chk">
+      <li>Creator's availability and willingness to work with GrowTech Media</li>
+      <li>General conduct and professionalism standards</li>
+      <li>Usage rights framework for all campaigns under this retainer</li>
+      <li>Notice period and exit terms</li>
+    </ul>
+    <p style="margin:12px 0 6px;color:#ccc;font-weight:500">Does NOT cover:</p>
+    <ul class="crs">
+      <li>Specific campaign dates, brands, or deliverables (per campaign)</li>
+      <li>Fixed monthly payment (payment is per reel, per campaign)</li>
+      <li>Guaranteed number of campaigns per month</li>
+    </ul>
+  </div>
+
+  <div class="doc-sec">
+    <h3>How Campaigns Work</h3>
+    <ol>
+      <li>GrowTech Media sends Creator a <span class="hl">Campaign Brief</span> (shoot date, brand, rate)</li>
+      <li>Creator confirms availability within <span class="hl">24 hours</span></li>
+      <li>A <span class="hl">single Campaign Agreement</span> is signed for that specific campaign</li>
+      <li>GrowTech Media handles all scripting, shooting, editing, post-production</li>
+      <li>Creator shows up on set, follows direction, and posts the final reel</li>
+    </ol>
+    <div class="notice" style="margin-top:12px">Declining more than <strong style="color:var(--white)">3 campaigns in a month</strong> without valid reason may be considered a breach of good faith.</div>
+  </div>
+
+  <div class="doc-sec">
+    <h3>Creator's Commitments</h3>
+    <p style="margin-bottom:6px;color:#ccc;font-weight:500">Availability & Communication</p>
+    <ul>
+      <li>Respond to GrowTech Media within 12 hours on working days</li>
+      <li>Keep Instagram account active throughout the retainer</li>
+      <li>Inform GrowTech Media if follower count or niche significantly changes</li>
+    </ul>
+    <p style="margin:10px 0 6px;color:#ccc;font-weight:500">Brand & Content Standards</p>
+    <ul>
+      <li>Maintain a brand-safe Instagram — no offensive, hateful, or controversial content</li>
+      <li>Not work as direct talent for a competing influencer marketing agency without informing GrowTech Media</li>
+      <li>Not independently approach GrowTech Media's clients for 6 months after retainer ends</li>
+    </ul>
+  </div>
+
+  <div class="doc-sec">
+    <h3>Package Rates (Locked for Retainer Duration)</h3>
+    <table class="doc-table">
+      <tr><th>Package</th><th>Followers</th><th>Rate Per Reel</th></tr>
+      <tr><td>NANO</td><td>1.5K – 2K</td><td>₹2,000</td></tr>
+      <tr><td>RISING</td><td>2K – 2.5K</td><td>₹2,500</td></tr>
+      <tr><td>ELITE</td><td>2.5K – 3.5K</td><td>₹3,000</td></tr>
+    </table>
+    <p style="margin-top:8px">Payment: <span class="hl">50% advance</span> on campaign confirmation, <span class="hl">50% after</span> reel goes live.</p>
+  </div>
+
+  <div class="doc-sec">
+    <h3>Exit & Notice Policy</h3>
+    <p style="margin-bottom:6px;color:#ccc;font-weight:500">Creator wants to leave:</p>
+    <ul>
+      <li>Minimum <span class="hl">10 days' written notice</span> via WhatsApp or email</li>
+      <li>All confirmed campaigns must be completed before exit</li>
+      <li>Leaving before 3-month minimum without valid reason: advance on pending campaigns forfeited</li>
+    </ul>
+    <p style="margin:10px 0 6px;color:#ccc;font-weight:500">Valid reasons for early exit without penalty:</p>
+    <ul><li>Medical emergency (documentation required)</li><li>Relocation outside India</li><li>Mutual written agreement</li></ul>
+  </div>
+
+  <div class="doc-sec">
+    <h3>Usage Rights</h3>
+    <p>Non-exclusive, royalty-free rights for all reel content across Instagram, Facebook, YouTube Shorts, Meta/Google ads, WhatsApp, website, email. Duration: <span class="hl">12 months</span> per reel. Territory: India.</p>
+  </div>
+
+  <div class="doc-sec">
+    <h3>Non-Solicitation & Confidentiality</h3>
+    <p>Creator agrees not to approach GrowTech Media's clients for <span class="hl">6 months after retainer ends</span>. All client identities, campaign strategies, payment rates, and internal workflows are strictly confidential.</p>
+  </div>
+</div>
+
+<!-- FORM -->
+<form id="sigForm" novalidate>
+
+  <div style="margin-bottom:32px">
+    <div class="sec-label">01 — Agreement Details</div>
+    <div class="row">
+      <div class="field"><label>Agreement Reference ID</label><input type="text" name="refid" id="refid" readonly style="color:var(--accent);font-family:'DM Mono',monospace;font-size:12px;background:#111"></div>
+      <div class="field"><label>Agreement Date</label><input type="text" name="agreeDate" id="agreeDate" readonly style="color:var(--accent);font-family:'DM Mono',monospace;font-size:12px;background:#111"></div>
+    </div>
+    <div class="row">
+      <div class="field" id="f-start"><label>Retainer Start Date <span class="req">*</span></label><input type="date" name="startDate" id="startDate"><div class="err-msg">Required</div></div>
+      <div class="field"><label>Minimum End Date (auto)</label><input type="date" name="endDate" id="endDate" readonly style="color:#777;background:#111"></div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:32px">
+    <div class="sec-label">02 — Creator Details</div>
+    <div class="row">
+      <div class="field" id="f-name"><label>Full Name <span class="req">*</span></label><input type="text" name="fullname" placeholder="Your legal full name"><div class="err-msg">Required</div></div>
+      <div class="field" id="f-handle"><label>Instagram Handle <span class="req">*</span></label><input type="text" name="handle" placeholder="@yourhandle"><div class="err-msg">Required</div></div>
+    </div>
+    <div class="row">
+      <div class="field" id="f-phone"><label>Phone / WhatsApp <span class="req">*</span></label><input type="tel" name="phone" placeholder="+91 98765 43210"><div class="err-msg">Required</div></div>
+      <div class="field" id="f-email"><label>Email <span class="req">*</span></label><input type="email" name="email" placeholder="you@email.com"><div class="err-msg">Valid email required</div></div>
+    </div>
+    <div class="row">
+      <div class="field" id="f-upi"><label>UPI / Bank Account <span class="req">*</span></label><input type="text" name="upi" placeholder="UPI ID or bank account"><div class="err-msg">Required</div></div>
+      <div class="field" id="f-followers"><label>Followers at Signing <span class="req">*</span></label><input type="number" name="followers" placeholder="e.g. 2500" min="0"><div class="err-msg">Required</div></div>
+    </div>
+    <div class="row">
+      <div class="field" id="f-niche"><label>Niche / Content Category <span class="req">*</span></label><input type="text" name="niche" placeholder="e.g. Fashion & Lifestyle"><div class="err-msg">Required</div></div>
+      <div class="field" id="f-tier"><label>Your Tier <span class="req">*</span></label>
+        <select name="tier" id="tierSel">
+          <option value="">Select tier</option>
+          <option value="NANO">NANO — ₹2,000/reel (1.5K–2K)</option>
+          <option value="RISING">RISING — ₹2,500/reel (2K–2.5K)</option>
+          <option value="ELITE">ELITE — ₹3,000/reel (2.5K–3.5K)</option>
+        </select>
+        <div class="err-msg">Required</div>
+      </div>
+    </div>
+    <div class="field"><label>Rate Per Reel (₹) — auto-filled</label><input type="text" id="rateField" name="rate" readonly placeholder="Select tier above" style="color:var(--accent);font-family:'DM Mono',monospace;background:#111"></div>
+  </div>
+
+  <div style="margin-bottom:32px">
+    <div class="sec-label">03 — Your Signature</div>
+    <div class="field" id="f-sig">
+      <label>Draw Your Signature <span class="req">*</span> <span style="font-size:11px;color:#555;font-weight:300">— finger on mobile, mouse on desktop</span></label>
+      <div class="sig-wrap">
+        <canvas class="sig-canvas" id="sigCanvas"></canvas>
+        <div class="sig-bar">
+          <span class="sig-hint">✍️ Sign in the box above</span>
+          <button type="button" class="sig-clear" onclick="clearSig()">Clear ✕</button>
+        </div>
+      </div>
+      <div class="err-msg">Please draw your signature to proceed</div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:32px">
+    <div class="sec-label">04 — Confirmation</div>
+    <div class="agree-box">
+      <label class="agree-row">
+        <input type="checkbox" id="agreeChk">
+        <span>I, <strong id="namePrev" style="color:var(--white)">___</strong>, have read and fully understood the GrowTech Media Creator Retainer Agreement. I agree to all terms and conditions. My drawn signature above is my legal digital signature for this document.</span>
+      </label>
+      <div class="err-msg" id="agreeErr" style="margin-top:8px">You must confirm to continue</div>
+    </div>
+    <button type="submit" class="submit-btn" id="submitBtn">Sign & Submit Agreement ✍️</button>
+    <div class="status-msg" id="statusMsg"></div>
+    <div class="form-note">After signing, your agreement PDF will be saved to GrowTech Media's system.<br>Our team will countersign and confirm within <strong style="color:#555">24 hours</strong>.</div>
+  </div>
+
+</form>
+
+<!-- SUCCESS -->
+<div class="success" id="successScreen">
+  <div class="success-icon">✍️</div>
+  <h2>Agreement <span>Signed!</span></h2>
+  <p>Your retainer agreement has been submitted. GrowTech Media will review and countersign within 24 hours.</p>
+  <p style="font-size:13px;color:#555">Your reference ID:</p>
+  <div class="ref-box" id="successRef"></div>
+  <p style="margin-top:20px;font-size:13px;color:#444">— GrowTech Media | @growtechmedia</p>
+</div>
+
+</div>
+<script>
+const APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbxU9AhsBDx70EHW9FPRU-8o_B4cUPRqoAtkumnciYoytvxcnQuakDLtsak_l4zIPlcW/exec';
+const SIGNED_DB='35799408851080bca2a0d589a838bdad';
+const rateMap={NANO:2000,RISING:2500,ELITE:3000};
+
+// Auto-fill
+const today=new Date();
+const dateStr=today.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+const refId='GTM-RET-'+today.getFullYear()+String(today.getMonth()+1).padStart(2,'0')+'-'+Math.floor(Math.random()*9000+1000);
+document.getElementById('refid').value=refId;
+document.getElementById('agreeDate').value=dateStr;
+
+document.getElementById('startDate').addEventListener('change',function(){
+  if(this.value){const d=new Date(this.value);d.setMonth(d.getMonth()+3);document.getElementById('endDate').value=d.toISOString().split('T')[0];}
+});
+document.getElementById('tierSel').addEventListener('change',function(){
+  document.getElementById('rateField').value=this.value?'₹'+rateMap[this.value].toLocaleString('en-IN'):'';
+});
+document.querySelector('[name="fullname"]').addEventListener('input',function(){
+  document.getElementById('namePrev').textContent=this.value||'___';
+});
+
+// Signature canvas
+const canvas=document.getElementById('sigCanvas');
+const ctx=canvas.getContext('2d');
+let drawing=false,hasSig=false;
+function resizeCvs(){
+  const dpr=window.devicePixelRatio||1;
+  const r=canvas.getBoundingClientRect();
+  canvas.width=r.width*dpr;canvas.height=r.height*dpr;
+  ctx.scale(dpr,dpr);ctx.strokeStyle='#c8f54a';ctx.lineWidth=2.5;ctx.lineCap='round';ctx.lineJoin='round';
+}
+resizeCvs();window.addEventListener('resize',resizeCvs);
+function gp(e){const r=canvas.getBoundingClientRect();const s=e.touches?e.touches[0]:e;return{x:s.clientX-r.left,y:s.clientY-r.top};}
+canvas.addEventListener('mousedown',e=>{drawing=true;const p=gp(e);ctx.beginPath();ctx.moveTo(p.x,p.y);});
+canvas.addEventListener('mousemove',e=>{if(!drawing)return;const p=gp(e);ctx.lineTo(p.x,p.y);ctx.stroke();hasSig=true;});
+canvas.addEventListener('mouseup',()=>drawing=false);
+canvas.addEventListener('mouseleave',()=>drawing=false);
+canvas.addEventListener('touchstart',e=>{e.preventDefault();drawing=true;const p=gp(e);ctx.beginPath();ctx.moveTo(p.x,p.y);},{passive:false});
+canvas.addEventListener('touchmove',e=>{e.preventDefault();if(!drawing)return;const p=gp(e);ctx.lineTo(p.x,p.y);ctx.stroke();hasSig=true;},{passive:false});
+canvas.addEventListener('touchend',()=>drawing=false);
+function clearSig(){ctx.clearRect(0,0,canvas.width,canvas.height);hasSig=false;}
+
+// Validation
+function validate(){
+  let ok=true;
+  [['f-name','fullname'],['f-handle','handle'],['f-phone','phone'],['f-upi','upi'],['f-niche','niche']].forEach(([id,n])=>{
+    const el=document.getElementById(id),v=document.querySelector('[name="'+n+'"]').value.trim();
+    el.classList.toggle('error',!v);if(!v)ok=false;
+  });
+  const eEl=document.getElementById('f-email'),ev=document.querySelector('[name="email"]').value.trim();
+  const eok=/\S+@\S+\.\S+/.test(ev);eEl.classList.toggle('error',!eok);if(!eok)ok=false;
+  const fEl=document.getElementById('f-followers'),fv=document.querySelector('[name="followers"]').value;
+  fEl.classList.toggle('error',!fv);if(!fv)ok=false;
+  const tEl=document.getElementById('f-tier'),tok=!!document.getElementById('tierSel').value;
+  tEl.classList.toggle('error',!tok);if(!tok)ok=false;
+  const sEl=document.getElementById('f-start'),sok=!!document.getElementById('startDate').value;
+  sEl.classList.toggle('error',!sok);if(!sok)ok=false;
+  const sigEl=document.getElementById('f-sig');sigEl.classList.toggle('error',!hasSig);if(!hasSig)ok=false;
+  const aok=document.getElementById('agreeChk').checked;
+  document.getElementById('agreeErr').style.display=aok?'none':'block';if(!aok)ok=false;
+  return ok;
+}
+
+// PDF generation
+async function makePDF(d,sigImg){
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+  const pw=doc.internal.pageSize.getWidth();
+  let y=18;
+  // Dark bg
+  doc.setFillColor(10,10,10);doc.rect(0,0,pw,297,'F');
+  // Header
+  doc.setTextColor(200,245,74);doc.setFontSize(8);doc.setFont('helvetica','bold');
+  doc.text('GROWTECH MEDIA · OFFICIAL DOCUMENT',pw/2,y,{align:'center'});y+=7;
+  doc.setTextColor(245,244,240);doc.setFontSize(17);
+  doc.text('Creator Retainer Agreement',pw/2,y,{align:'center'});y+=6;
+  doc.setFontSize(8);doc.setTextColor(136,136,136);
+  doc.text('Ongoing Retainer · Minimum 3 Months · 10-Day Exit Notice',pw/2,y,{align:'center'});y+=9;
+  doc.setDrawColor(47,47,47);doc.line(14,y,pw-14,y);y+=9;
+  // Details
+  const row=(lbl,val,accent)=>{
+    doc.setFontSize(8);doc.setFont('helvetica','bold');doc.setTextColor(100,100,100);doc.text(lbl+':',14,y);
+    doc.setFont('helvetica','normal');doc.setTextColor(accent?200:220,accent?245:220,accent?74:220);
+    doc.text(String(val),70,y);y+=6.5;
+  };
+  doc.setTextColor(200,245,74);doc.setFont('helvetica','bold');doc.setFontSize(9);doc.text('AGREEMENT DETAILS',14,y);y+=7;
+  row('Reference ID',d.refid,true);row('Agreement Date',d.agreeDate);row('Start Date',d.startDate);row('Minimum End Date',d.endDate);
+  y+=3;doc.setDrawColor(30,30,30);doc.line(14,y,pw-14,y);y+=7;
+  doc.setTextColor(200,245,74);doc.text('CREATOR DETAILS',14,y);y+=7;
+  row('Full Name',d.fullname);row('Instagram Handle',d.handle);row('Phone',d.phone);row('Email',d.email);row('UPI / Bank',d.upi);
+  row('Followers',Number(d.followers).toLocaleString('en-IN'));row('Niche',d.niche);row('Tier',d.tier);row('Rate Per Reel','Rs.'+Number(d.rate).toLocaleString('en-IN'),true);
+  y+=3;doc.line(14,y,pw-14,y);y+=9;
+  // Key terms
+  doc.setTextColor(200,245,74);doc.text('KEY TERMS AGREED',14,y);y+=7;
+  const pts=['Minimum engagement period of 3 months from start date.','Payment: 50% advance on campaign confirmation + 50% after reel goes live.','10 days written notice required before exit.','Non-solicitation clause applies for 6 months after retainer ends.','Usage rights granted for 12 months per reel across all platforms. Territory: India.','All campaign strategies, client identities, and payment rates are strictly confidential.','Creator must maintain brand-safe Instagram presence throughout retainer.'];
+  doc.setFont('helvetica','normal');doc.setFontSize(8);
+  pts.forEach(pt=>{
+    doc.setTextColor(80,80,80);doc.text('•',14,y);doc.setTextColor(160,160,160);
+    const lines=doc.splitTextToSize(pt,pw-36);doc.text(lines,20,y);y+=lines.length*5+2;
+  });
+  y+=5;doc.line(14,y,pw-14,y);y+=9;
+  // Signatures
+  doc.setTextColor(200,245,74);doc.setFont('helvetica','bold');doc.text('DIGITAL SIGNATURES',14,y);y+=8;
+  // Creator box
+  doc.setDrawColor(47,47,47);doc.setFillColor(17,17,17);doc.roundedRect(14,y,80,35,2,2,'FD');
+  doc.setTextColor(100,100,100);doc.setFontSize(7);doc.text('CREATOR SIGNATURE',54,y+5,{align:'center'});
+  if(sigImg){try{doc.addImage(sigImg,'PNG',16,y+6,76,24);}catch(e){}}
+  doc.setTextColor(200,245,74);doc.setFontSize(8);doc.text(d.fullname,54,y+37,{align:'center'});
+  doc.setTextColor(100,100,100);doc.setFontSize(7);doc.text(d.agreeDate,54,y+42,{align:'center'});
+  // Agency box
+  doc.setDrawColor(47,47,47);doc.setFillColor(17,17,17);doc.roundedRect(pw-94,y,80,35,2,2,'FD');
+  doc.setTextColor(100,100,100);doc.setFontSize(7);doc.text('GROWTECH MEDIA',pw-54,y+5,{align:'center'});
+  doc.setTextColor(60,60,60);doc.setFontSize(9);doc.text('Pending countersignature',pw-54,y+22,{align:'center'});
+  doc.setTextColor(200,245,74);doc.setFontSize(8);doc.text('GrowTech Media',pw-54,y+37,{align:'center'});
+  y+=52;doc.line(14,y,pw-14,y);y+=7;
+  doc.setTextColor(50,50,50);doc.setFontSize(7);
+  doc.text('Ref: '+d.refid+' · GrowTech Media | @growtechmedia · Building long-term creator partnerships',pw/2,y,{align:'center'});
+  return doc.output('datauristring');
+}
+
+// Submit
+document.getElementById('sigForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  if(!validate()){document.querySelector('.field.error')?.scrollIntoView({behavior:'smooth',block:'center'});return;}
+  const btn=document.getElementById('submitBtn');
+  const statusEl=document.getElementById('statusMsg');
+  btn.disabled=true;
+  btn.innerHTML='<span style="display:inline-block;width:16px;height:16px;border:2px solid rgba(0,0,0,.3);border-top-color:#000;border-radius:50%;animation:spin .7s linear infinite"></span> Generating PDF...';
+  statusEl.style.color='#888';statusEl.textContent='Please wait...';
+  const tier=document.getElementById('tierSel').value;
+  const sigImg=canvas.toDataURL('image/png');
+  const d={
+    type:'creator_agreement',
+    dbId:SIGNED_DB,
+    refid:refId,
+    agreeDate:dateStr,
+    startDate:document.getElementById('startDate').value,
+    endDate:document.getElementById('endDate').value,
+    fullname:document.querySelector('[name="fullname"]').value.trim(),
+    handle:document.querySelector('[name="handle"]').value.trim(),
+    phone:document.querySelector('[name="phone"]').value.trim(),
+    email:document.querySelector('[name="email"]').value.trim(),
+    upi:document.querySelector('[name="upi"]').value.trim(),
+    followers:parseFloat(document.querySelector('[name="followers"]').value)||0,
+    niche:document.querySelector('[name="niche"]').value.trim(),
+    tier,rate:rateMap[tier]||0
+  };
+  try{
+    btn.innerHTML='<span style="display:inline-block;width:16px;height:16px;border:2px solid rgba(0,0,0,.3);border-top-color:#000;border-radius:50%;animation:spin .7s linear infinite"></span> Saving to Notion...';
+    const pdfUri=await makePDF(d,sigImg);
+    d.pdfBase64=pdfUri.split(',')[1];
+    await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(d)});
+    document.getElementById('sigForm').style.display='none';
+    document.querySelector('.agreement-doc').style.display='none';
+    document.querySelector('.header').style.display='none';
+    document.getElementById('successRef').textContent=refId;
+    document.getElementById('successScreen').style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }catch(err){
+    btn.disabled=false;btn.innerHTML='Sign & Submit Agreement ✍️';
+    statusEl.style.color='#ff6b6b';statusEl.textContent='⚠️ Something went wrong. Please try again.';
+    console.error(err);
+  }
+});
+document.querySelectorAll('input,select').forEach(el=>{
+  el.addEventListener('input',()=>el.closest('.field')?.classList.remove('error'));
+  el.addEventListener('change',()=>el.closest('.field')?.classList.remove('error'));
+});
+</script>
+</body>
+</html>
