@@ -171,9 +171,9 @@ select option{background:#1c1c1c}
     <h3>Package Rates (Locked for Retainer Duration)</h3>
     <table class="doc-table">
       <tr><th>Package</th><th>Followers</th></tr>
-      <tr><td>NANO</td><td>1.5K – 2K</td></tr>
-      <tr><td>RISING</td><td>2K – 2.5K</td></tr>
-      <tr><td>ELITE</td><td>2.5K & above</td></tr>
+      <tr><td>NANO</td><td>1K – 5K</td></tr>
+      <tr><td>MICRO</td><td>5K – 20K</td></tr>
+      <tr><td>RISING</td><td>20K – 50K</td></tr>
     </table>
     <p style="margin-top:8px">Payment: <span class="hl">50% advance</span> on campaign confirmation, <span class="hl">50% after</span> reel goes live.</p>
   </div>
@@ -235,9 +235,9 @@ select option{background:#1c1c1c}
       <div class="field" id="f-tier"><label>Your Tier <span class="req">*</span></label>
         <select name="tier" id="tierSel">
           <option value="">Select tier</option>
-          <option value="NANO">NANO (1.5K – 2K followers)</option>
-          <option value="RISING">RISING (2K – 2.5K followers)</option>
-          <option value="ELITE">ELITE (2.5K+ followers)</option>
+          <option value="NANO">NANO (1K – 5K followers)</option>
+          <option value="MICRO">MICRO (5K – 20K followers)</option>
+          <option value="RISING">RISING (20K – 50K followers)</option>
         </select>
         <div class="err-msg">Required</div>
       </div>
@@ -293,7 +293,7 @@ select option{background:#1c1c1c}
 <script>
 const APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbxU9AhsBDx70EHW9FPRU-8o_B4cUPRqoAtkumnciYoytvxcnQuakDLtsak_l4zIPlcW/exec';
 const SIGNED_DB='35799408851080bca2a0d589a838bdad';
-const rateMap={NANO:2000,RISING:2500,ELITE:3000}; // internal only
+const rateMap={NANO:2000,MICRO:2500,RISING:3000}; // internal only
 
 // Auto-fill
 const today=new Date();
